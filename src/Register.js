@@ -39,6 +39,8 @@ handleSubmit = (event) =>{
       	console.log(res.data);
 	if(res.data.success==true)
 		window.location.replace('http://52.172.25.243:3000/Login')
+	else
+		alert("Username already taken");
     	}).catch(error => {
       	console.log(error);
     	})
