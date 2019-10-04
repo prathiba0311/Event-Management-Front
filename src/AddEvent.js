@@ -10,11 +10,10 @@ class AddEvent extends React.Component {
       super();
       this.state = {
         startDate: new Date(),
-	category: 'Entertainment',
-	Name: null,
-	time: null,
-	venue: null,
-	det: null,
+	e_type: 'Entertainment',
+	e_time: null,
+	e_venue: null,
+	e_date: null,
 	uid: null
       }
       //this.handleChange = this.handleChange.bind(this);
@@ -29,11 +28,10 @@ class AddEvent extends React.Component {
     handleSubmit=(event) => {
 	event.preventDefault();
 	var opts={
-	"cat":this.state.category,    	
-	"name":this.state.Name,
-    	"time":this.state.time,
-	"venue":this.state.venue,
-	"det":this.state.det,
+	"e_type":this.state.e_type,    	
+    	"e_time":this.state.e_time,
+	"e_venue":this.state.e_venue,
+	"e_date":this.state.e_date,
 	"uid":this.state.uid
    	};
 	console.log(opts);
@@ -42,7 +40,8 @@ class AddEvent extends React.Component {
       	console.log(res);
       	console.log(res.data);
 	if(res.data.success==true)
-		window.location.replace('http://52.172.25.243:3000/Login')
+		window.location.replace('http://52.172.25.243:3000/userhome/'+this.state.uid);
+	else alert("Timings collide, choose another day");
     	}).catch(error => {
       	console.log(error);
     	})
@@ -56,14 +55,11 @@ class AddEvent extends React.Component {
           <input class='uid' name='uid'  onChange={this.handleChange} />
           <br/>
 	  <text>Event Category: </text>
-          <select class="category" name="category" onChange={this.handleChange}>
+          <select class="e_type" name="e_type" onChange={this.handleChange}>
               <option>Entertainment</option>
               <option>Infotainment</option>
               <option>Awareness</option>
             </select>
-          <br/>
-          <text>Event name: </text>
-          <input class='Name' name='Name'  onChange={this.handleChange} />
           <br/>
           <text>Date: </text>
           {/* <DatePicker 
@@ -74,14 +70,11 @@ class AddEvent extends React.Component {
           /> */}
           <br/>
           <text>Time Slot: </text>
-          <input class='time' name='time'  onChange={this.handleChange} />
+          <input class='e_time' name='e_time'  onChange={this.handleChange} />
           <br/>
           <text>Venue: </text>
-          <input class='venue' name='venue'  onChange={this.handleChange} />
+          <input class='e_venue' name='e_venue'  onChange={this.handleChange} />
           <br/>
-          <text>Event details (requirements): </text>
-          <input class='det' name='det' onChange={this.handleChange} />
-	  <br/>
 	<button class="Submit">Submit</button>
       <br />   
         </form>
