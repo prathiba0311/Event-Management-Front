@@ -37,7 +37,8 @@ handleSubmit = (event) =>{
       	console.log(res);
       	console.log(res.data);
 	if(res.data.success==true)
-		window.location.replace('http://52.172.25.243:3000/AddEvent')
+		window.location.replace('http://52.172.25.243:3000/AddEvent');
+	else alert("Wrong Username or Password");
     	}).catch(error => {
       	console.log(error);
     	})
