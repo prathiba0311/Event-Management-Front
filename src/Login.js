@@ -1,13 +1,13 @@
 import React from 'react';
-import './Styles/Login.css'
-import Register from './Register';
+import './Styles/Login.css';
 import axios from 'axios';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-function reg() {
-  return (
-    <Register/ >
-  );
-}
+import Userhome from './Userhome';
+// import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+// function reg() {
+//   return (
+//     <Register/ >
+//   );
+// }
 
 class Login extends React.Component {
 
@@ -31,14 +31,14 @@ handleSubmit = (event) =>{
     	"id":this.state.UserName,
     	"passwd":this.state.Password,
    	};
-	console.log(opts);
+	//console.log(opts);
+	console.log(opts.id);
 	axios.post('http://52.172.25.243:5000/login',opts)
     	.then(res => {
       	console.log(res);
       	console.log(res.data);
-	if(res.data.success==true)
-		window.location.replace('http://52.172.25.243:3000/userhome/'+this.state.UserName);
-	else alert("Wrong Username or Password");
+	if(res.data.success===true)
+		window.location.replace('http://52.172.25.243:3000/Userhome');
     	}).catch(error => {
       	console.log(error);
     	})
@@ -47,19 +47,20 @@ handleSubmit = (event) =>{
 }
   render() {
   return (
-	<form onSubmit={this.handleSubmit}>       
-	   
-	<div class="Component">
-      <input class="UserName" placeholder="UserName" name="UserName"  onChange={this.handleChange} />
-      <br />
-      <input class="Password" placeholder="Password" name="Password" onChange={this.handleChange} />
-      <br />
-      <button class="SignIn">Sign In</button>
-      <br />    
-	<a class="Register" href="http://52.172.25.243:3000/Register">New User? Register Here</a>
-</div>
-      
-      </form>
+	<form onSubmit={this.handleSubmit}>     
+		<div class="SubHeader">
+			<h2 class="Heading">Login</h2>
+		</div>  
+		<div class="Component">
+			<input class="Input" class="UserName" placeholder="UserName" name="UserName"  onChange={this.handleChange} />
+			<br />
+			<input class="Input" class="Password" placeholder="Password" name="Password" onChange={this.handleChange} />
+			<br />
+			<button class="Button" class="SignIn">Sign In</button>
+			<br />    
+			<a class="Register" href="http://52.172.25.243:3000/Register">New User? Register Here</a>
+		</div>
+    </form>	
   );
   }
 }
