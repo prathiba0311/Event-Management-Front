@@ -28,10 +28,11 @@ class AddEvent extends React.Component {
     handleSubmit=(event) => {
         event.preventDefault();
         var opts={
-        "name":this.state.Name,
-        "time":this.state.time,
-        "venue":this.state.venue,
-        "uid":this.state.uid
+        "e_type":this.state.Name,
+        "e_time":this.state.time,
+        "e_venue":this.state.venue,
+        "e_date":this.startDate,
+	"uid":this.state.uid
           };
         console.log(opts);
         axios.post('http://52.172.25.243:5000/addevent',opts)
